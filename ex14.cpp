@@ -24,10 +24,10 @@ int op;
    	cout<< "Digite a base do triângulo retângulo: ";
    	cin>> base;
    	tri_retangulo= base*altura;
-   	cout<< "A area do triangulo equilatero é: " <<tri_retangulo<< "\n";
+   	cout<< "A area do triangulo retângulo é: " <<tri_retangulo<< "\n";
    }   
     if(op==3){
-   	cout<< "Digite a altura do triângulo retângulo: ";
+   	cout<< "Digite a altura do triângulo: ";
    	cin>> altura;
    	cout<< "Digite a base do triângulo: ";
    	cin>> base;
