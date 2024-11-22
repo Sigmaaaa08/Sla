@@ -13,7 +13,7 @@ int main() {
     cin >> qtd;
 
     for (i = 1; i <= qtd; i++) {
-        // Entrada do raio e opção
+       
         cout << "\nDigite o raio da circunferência: ";
         cin >> R;
 
