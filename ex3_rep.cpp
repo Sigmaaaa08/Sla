@@ -8,7 +8,7 @@ int main() {
     float R, C, A, As, Angulo; 
     char op;
 
-    // Entrada inicial
+    
     cout << "Digite a quantidade de cálculos que serão realizados: ";
     cin >> qtd;
 
@@ -24,7 +24,7 @@ int main() {
         cout << "Digite sua opção: ";
         cin >> op;
 
-        // Condições para cálculo
+      
         if (op == 'A' || op == 'a') {
             C = 2 * M_PI * R;
             cout << "Comprimento da circunferência = " << C << "\n";
