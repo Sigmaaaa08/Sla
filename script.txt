@@ -1,0 +1,79 @@
+CREATE DATABASE Loja_Roupas;
+
+CREATE TABLE tb_Fornecedores (
+  id_Fornecedor int PRIMARY KEY,
+  nome_Fornecedor char(30) NOT NULL,
+  telefone_Fornecedor int NOT NULL,
+  email_Fornecedor varchar(30)
+);
+
+CREATE TABLE tb_Roupas (
+  id_Roupa int PRIMARY KEY,
+  descricao_Roupa varchar(30) NOT NULL,
+  tamanho_Roupa char(10) NOT NULL,
+  cor_Roupa char(10) NOT NULL,
+  preco_Roupa FLOAT NOT NULL,
+  id_Fornecedor int,
+  FOREIGN KEY (id_Fornecedor) REFERENCES tb_Fornecedores(id_Fornecedor)
+);
+
+CREATE TABLE tb_Clientes (
+  id_Cliente int PRIMARY KEY,
+  nome_Cliente char(30) NOT NULL,
+  cpf_Cliente varchar(11) NOT NULL,
+  telefone_Cliente int NOT NULL
+);
+
+CREATE TABLE tb_Pagamentos (
+  id_Pagamento int PRIMARY KEY,
+  tipo_Pagamento varchar(30) NOT NULL,
+  descricao_Pagamento varchar(100)
+);
+
+CREATE TABLE tb_Vendas (
+  id_Venda int AUTO_INCREMENT PRIMARY KEY,
+  quantidade_pecas int NOT NULL,
+  data_Venda DATE NOT NULL,
+  id_Roupa int,
+  id_Cliente int,
+  id_Pagamento int,
+  FOREIGN KEY (id_Roupa) REFERENCES tb_Roupas(id_Roupa),
+  FOREIGN KEY (id_Cliente) REFERENCES tb_Clientes(id_Cliente),
+  FOREIGN KEY (id_Pagamento) REFERENCES tb_Pagamentos(id_Pagamento)
+);
+
+INSERT INTO tb_Fornecedores (id_Fornecedor, nome_Fornecedor, telefone_Fornecedor, email_Fornecedor) 
+VALUES 
+(1, 'Yora Atacado', 11987654321, 'YoraAtacado@gmail.com'),
+(2, 'Destake', 11987654322, 'Destake@gmail.com'),
+(3, 'Livny', 11987654323, 'Livny@gmail.com');
+
+INSERT INTO tb_Roupas (id_Roupa, descricao_Roupa, tamanho_Roupa, cor_Roupa, preco_Roupa, id_Fornecedor) 
+VALUES 
+(1, 'Camiseta', 'M', 'Azul', 50.00, 1),
+(2, 'Calça', 'G', 'Preto', 100.00, 2),
+(3, 'Jaqueta', 'P', 'Vermelho', 150.00, 3);
+
+INSERT INTO tb_Clientes (id_Cliente, nome_Cliente, cpf_Cliente, telefone_Cliente) 
+VALUES 
+(1, 'João', '12345678901', 11912345678),
+(2, 'Evian', '98765432109', 11987654321),
+(3, 'José', '45678912345', 11911223344);
+
+INSERT INTO tb_Pagamentos (id_Pagamento, tipo_Pagamento, descricao_Pagamento) 
+VALUES 
+(1, 'Cartão de Crédito', 'Pagamento via cartão.'),
+(2, 'Dinheiro', 'Pagamento em dinheiro.'),
+(3, 'Pix', 'Pagamento via transferência pix.');
+
+INSERT INTO tb_Vendas (quantidade_pecas, data_Venda, id_Roupa, id_Cliente, id_Pagamento) 
+VALUES 
+(2, '2024-11-21', 1, 1, 1),
+(1, '2024-11-20', 2, 2, 2),
+(3, '2024-11-19', 3, 3, 3);
+
+SELECT * FROM tb_Clientes WHERE id_Cliente <= 2;
+SELECT * FROM tb_Fornecedores WHERE id_Fornecedor != 1;
+SELECT * FROM tb_Pagamentos WHERE tipo_Pagamento = 'Pix';
+SELECT * FROM tb_Roupas WHERE tamanho_Roupa = 'G';
+SELECT * FROM tb_Vendas WHERE quantidade_pecas > 1;
